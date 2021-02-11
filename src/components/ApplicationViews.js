@@ -1,5 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import {GameProvider} from "./game/GameProvider"
+import {GameList} from "./game/GameList"
 
 export const ApplicationViews = () => {
     return <>
@@ -9,5 +11,9 @@ export const ApplicationViews = () => {
         }}>
             Application views
         </main>
+        <GameProvider>
+            <GameList></GameList>
+        </GameProvider>
+
     </>
 }
