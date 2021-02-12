@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { GameContext } from "./GameProvider.js"
-
+import {GameDetail} from "./GameDetail"
+import {Game} from "./Game"
 export const GameList = (props) => {
     const { games, getGames, deleteGame } = useContext(GameContext)
 
@@ -16,13 +18,7 @@ export const GameList = (props) => {
         <article className="games">
             {
                 games.map(game => {
-                    return <section key={`game--${game.id}`} className="game">
-                        <div className="game__title">{game.title} </div>
-                        <div className="game__players"> up to {game.number_of_players} players</div>
-                        <div className="game__description">{game.title} is a game where you {game.description} and takes {game.play_time} hours </div>
-                        <div className="game__recommendation">For ages {game.age_recommendation} </div>
-                        <button onClick={()=>{deleteGame(game)}}>Delete</button>
-                    </section>
+                    return <Game game={game} key={game.id} ></Game>
                     
                 })
             }
