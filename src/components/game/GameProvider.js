@@ -28,19 +28,21 @@ export const GameProvider = (props) => {
         })
             .then(game)
     }
-    
-    const getGameTypes = () => {
-        return fetch("http://localhost:8000/gametypes", {
+    const deleteGame = game => {
+        // console.log("hits on click")
+
+        return fetch(`http://localhost:8000/games/${ game.id }`, {
+            method: "DELETE",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
         })
-            .then(response => response.json())
-            .then(setTypes)
+            .then(getGames)
     }
+    
 
     return (
-        <GameContext.Provider value={{ games, getGames, gameTypes, getGameTypes, createGame}} >
+        <GameContext.Provider value={{ games, getGames, gameTypes, createGame, deleteGame}} >
             { props.children }
         </GameContext.Provider>
     )
