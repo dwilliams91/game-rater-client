@@ -19,6 +19,15 @@ export const GameDetail = (props) => {
                         <div className="game__description">{game.title} is a game where you {game.description} and takes {game.play_time} hours </div>
                         <div className="game__recommendation">For ages {game.age_recommendation} </div>
         </article>
+        <h2>Ratings</h2>
+        {game.ratings&&<article>
+            {
+                game.ratings.map(rating => {
+                    return <div>{rating.rating}/10</div> 
+                    
+                })
+            }
+        </article>}
         </>
     )
 }
