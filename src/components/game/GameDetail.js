@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react"
+import { isCompositeComponent } from "react-dom/test-utils"
 import { Link } from "react-router-dom"
 import { GameContext } from "./GameProvider.js"
 
@@ -10,6 +11,18 @@ export const GameDetail = (props) => {
         const gameId = parseInt(props.match.params.gameId)
         getSingleGame(gameId)
     },[])
+
+    
+    const displayStars=(rating)=>{
+        let display=""
+        for (let i=0; i<rating; i++){
+            display+="X"
+        }
+        
+
+        return display
+
+    }
 
     return (
         <>
@@ -23,7 +36,7 @@ export const GameDetail = (props) => {
         {game.ratings&&<article>
             {
                 game.ratings.map(rating => {
-                    return <div>{rating.rating}/10</div> 
+                    return <div>{displayStars(rating.rating)}/10</div> 
                     
                 })
             }
@@ -31,3 +44,12 @@ export const GameDetail = (props) => {
         </>
     )
 }
+
+// {game.ratings&&<article>
+//     {
+//         game.ratings.map(rating => {
+//             return <div>{rating.rating}/10</div> 
+            
+//         })
+//     }
+// </article>}
